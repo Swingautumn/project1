@@ -1,13 +1,13 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Linux笔记 | 王耀福的个人博客</title><meta name="author" content="王耀福"><meta name="copyright" content="王耀福"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="零散理论关于RAID指Linux中的Redundant Arrays of Independent Disks，独立磁盘冗余阵列技术，是一种数据存储技术，旨在通过组合多个物理磁盘来提供数据冗余、增加系统容量，提高系统性能。该技术允许用户将多个磁盘组合成一个逻辑单元，从而提高容错率，增强数据包或和系统的I&#x2F;O性能 关于inode、硬链接、软链接Inode即index node，索引节点，是">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Linux笔记 | 王耀福的个人博客</title><meta name="author" content="王耀福"><meta name="copyright" content="王耀福"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="各种理论关于RAID指Linux中的Redundant Arrays of Independent Disks，独立磁盘冗余阵列技术，是一种数据存储技术，旨在通过组合多个物理磁盘来提供数据冗余、增加系统容量，提高系统性能。该技术允许用户将多个磁盘组合成一个逻辑单元，从而提高容错率，增强数据包或和系统的I&#x2F;O性能 关于inode、硬链接、软链接inode相当于一个文件的独立标识，它包含一个">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux笔记">
 <meta property="og:url" content="https://swingautumn.github.io/LinuxNote/index.html">
 <meta property="og:site_name" content="王耀福的个人博客">
-<meta property="og:description" content="零散理论关于RAID指Linux中的Redundant Arrays of Independent Disks，独立磁盘冗余阵列技术，是一种数据存储技术，旨在通过组合多个物理磁盘来提供数据冗余、增加系统容量，提高系统性能。该技术允许用户将多个磁盘组合成一个逻辑单元，从而提高容错率，增强数据包或和系统的I&#x2F;O性能 关于inode、硬链接、软链接Inode即index node，索引节点，是">
+<meta property="og:description" content="各种理论关于RAID指Linux中的Redundant Arrays of Independent Disks，独立磁盘冗余阵列技术，是一种数据存储技术，旨在通过组合多个物理磁盘来提供数据冗余、增加系统容量，提高系统性能。该技术允许用户将多个磁盘组合成一个逻辑单元，从而提高容错率，增强数据包或和系统的I&#x2F;O性能 关于inode、硬链接、软链接inode相当于一个文件的独立标识，它包含一个">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://swingautumn.github.io/img/logo.png">
 <meta property="article:published_time" content="2025-04-20T05:27:09.814Z">
-<meta property="article:modified_time" content="2025-06-03T12:03:20.720Z">
+<meta property="article:modified_time" content="2025-06-16T15:04:43.277Z">
 <meta property="article:author" content="王耀福">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://swingautumn.github.io/img/logo.png"><script type="application/ld+json">{
@@ -17,7 +17,7 @@
   "url": "https://swingautumn.github.io/LinuxNote/",
   "image": "https://swingautumn.github.io/img/logo.png",
   "datePublished": "2025-04-20T05:27:09.814Z",
-  "dateModified": "2025-06-03T12:03:20.720Z",
+  "dateModified": "2025-06-16T15:04:43.277Z",
   "author": [
     {
       "@type": "Person",
@@ -170,12 +170,160 @@
     }
   }
 window.addEventListener('load',()=> {preloader.endLoading()})
-setTimeout(function(){preloader.endLoading();}, 3000);</script><div id="web_bg" style="background-color: #9FECCE;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">8</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-eye"></i><span> 分类预览</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/%E5%AE%B9%E5%99%A8%E5%8C%96%E6%8A%80%E6%9C%AF"><span> 容器化</span></a></li><li><a class="site-page child" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93"><span> 数据库</span></a></li><li><a class="site-page child" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span> 操作系统</span></a></li><li><a class="site-page child" href="/categories/%E7%BD%91%E7%BB%9C"><span> 网络</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-paperclip"></i><span> 分类直达</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/logo.png" alt="Logo"><span class="site-name">王耀福的个人博客</span></a><a class="nav-page-title" href="/"><span class="site-name">Linux笔记</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-eye"></i><span> 分类预览</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/%E5%AE%B9%E5%99%A8%E5%8C%96%E6%8A%80%E6%9C%AF"><span> 容器化</span></a></li><li><a class="site-page child" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93"><span> 数据库</span></a></li><li><a class="site-page child" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span> 操作系统</span></a></li><li><a class="site-page child" href="/categories/%E7%BD%91%E7%BB%9C"><span> 网络</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-paperclip"></i><span> 分类直达</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Linux笔记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-04-20T05:27:09.814Z" title="发表于 2025-04-20 13:27:09">2025-04-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-06-03T12:03:20.720Z" title="更新于 2025-06-03 20:03:20">2025-06-03</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="零散理论"><a href="#零散理论" class="headerlink" title="零散理论"></a>零散理论</h2><h3 id="关于RAID"><a href="#关于RAID" class="headerlink" title="关于RAID"></a>关于RAID</h3><p>指Linux中的Redundant Arrays of Independent Disks，独立磁盘冗余阵列技术，是一种数据存储技术，旨在通过组合多个物理磁盘来提供数据冗余、增加系统容量，提高系统性能。该技术允许用户将多个磁盘组合成一个逻辑单元，从而提高容错率，增强数据包或和系统的I&#x2F;O性能</p>
-<h3 id="关于inode、硬链接、软链接"><a href="#关于inode、硬链接、软链接" class="headerlink" title="关于inode、硬链接、软链接"></a>关于inode、硬链接、软链接</h3><p>Inode即index node，索引节点，是Linux中的一个重要概念，主要是用于描述文件系统中的文件和目录。参考Linux系统中表面的文件名，那个文件名就是近似于索引节点。硬链接的概念也差不多，通过新建一个硬链接指向对应的节点实现访问，它的命令使用ln 原xxx 新xxx，当删除原xxx时，新建的xxx仍旧能使用，而软链接近似于windows的快捷方式，通过ln -s创建</p>
+setTimeout(function(){preloader.endLoading();}, 3000);</script><div id="web_bg" style="background-color: #9FECCE;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">9</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-eye"></i><span> 分类预览</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/%E5%AE%B9%E5%99%A8%E5%8C%96%E6%8A%80%E6%9C%AF"><span> 容器化</span></a></li><li><a class="site-page child" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93"><span> 数据库</span></a></li><li><a class="site-page child" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span> 操作系统</span></a></li><li><a class="site-page child" href="/categories/%E7%BD%91%E7%BB%9C"><span> 网络</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-paperclip"></i><span> 分类直达</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/logo.png" alt="Logo"><span class="site-name">王耀福的个人博客</span></a><a class="nav-page-title" href="/"><span class="site-name">Linux笔记</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-eye"></i><span> 分类预览</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/%E5%AE%B9%E5%99%A8%E5%8C%96%E6%8A%80%E6%9C%AF"><span> 容器化</span></a></li><li><a class="site-page child" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93"><span> 数据库</span></a></li><li><a class="site-page child" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span> 操作系统</span></a></li><li><a class="site-page child" href="/categories/%E7%BD%91%E7%BB%9C"><span> 网络</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-paperclip"></i><span> 分类直达</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Linux笔记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-04-20T05:27:09.814Z" title="发表于 2025-04-20 13:27:09">2025-04-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-06-16T15:04:43.277Z" title="更新于 2025-06-16 23:04:43">2025-06-16</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="各种理论"><a href="#各种理论" class="headerlink" title="各种理论"></a>各种理论</h2><h3 id="关于RAID"><a href="#关于RAID" class="headerlink" title="关于RAID"></a>关于RAID</h3><p>指Linux中的Redundant Arrays of Independent Disks，独立磁盘冗余阵列技术，是一种数据存储技术，旨在通过组合多个物理磁盘来提供数据冗余、增加系统容量，提高系统性能。该技术允许用户将多个磁盘组合成一个逻辑单元，从而提高容错率，增强数据包或和系统的I&#x2F;O性能</p>
+<h3 id="关于inode、硬链接、软链接"><a href="#关于inode、硬链接、软链接" class="headerlink" title="关于inode、硬链接、软链接"></a>关于inode、硬链接、软链接</h3><p>inode相当于一个文件的独立标识，它包含一个文件的各种元数据比如文件大小、时间戳，它采用计数制，当inode为0时，它对应的文件数据会被系统回收(删除)，而软硬链接的使用便是建立在inode唯一特性上并对其进行的拓展。</p>
+<p>在Linux文件系统中，inode、硬链接（Hard Link）和软链接(Symbolic Link)是理解<strong>文件存储与访问机制</strong>的核心概念。它们的区别和联系如下：</p>
+<hr>
+<h4 id="一、核心概念与作用"><a href="#一、核心概念与作用" class="headerlink" title="一、核心概念与作用"></a><strong>一、核心概念与作用</strong></h4><table>
+<thead>
+<tr>
+<th><strong>概念</strong></th>
+<th><strong>作用</strong></th>
+<th><strong>本质</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>inode</strong></td>
+<td>存储文件的<strong>元数据</strong>（大小、权限、时间戳、数据块位置等），<strong>不包含文件名</strong>。</td>
+<td>文件的唯一身份证（通过inode号标识）</td>
+</tr>
+<tr>
+<td><strong>硬链接</strong></td>
+<td>多个文件名指向<strong>同一个inode</strong>，共享文件数据。</td>
+<td>文件的多个别名</td>
+</tr>
+<tr>
+<td><strong>软链接</strong></td>
+<td>创建一个新文件（有自己的inode），内容为<strong>目标文件的路径</strong>。</td>
+<td>指向另一个文件的快捷方式</td>
+</tr>
+</tbody></table>
+<hr>
+<h4 id="二、关键区别对比"><a href="#二、关键区别对比" class="headerlink" title="二、关键区别对比"></a><strong>二、关键区别对比</strong></h4><table>
+<thead>
+<tr>
+<th><strong>特性</strong></th>
+<th><strong>inode</strong></th>
+<th><strong>硬链接</strong></th>
+<th><strong>软链接</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>是否占用inode</strong></td>
+<td>是（每个文件必有唯一inode）</td>
+<td><strong>否</strong>（共享目标文件的inode）</td>
+<td><strong>是</strong>（拥有独立inode）</td>
+</tr>
+<tr>
+<td><strong>是否跨文件系统</strong></td>
+<td>-</td>
+<td>❌ 不允许</td>
+<td>✅ 允许</td>
+</tr>
+<tr>
+<td><strong>链接目录</strong></td>
+<td>-</td>
+<td>❌ 不允许（仅超级用户可尝试）</td>
+<td>✅ 允许</td>
+</tr>
+<tr>
+<td><strong>原文件删除后</strong></td>
+<td>inode和数据块被释放</td>
+<td><strong>仍可访问</strong>（数据未被删除）</td>
+<td>❌ 失效（成为“悬空链接”）</td>
+</tr>
+<tr>
+<td><strong>文件大小</strong></td>
+<td>存储元数据（通常128~256字节）</td>
+<td>与源文件相同</td>
+<td>等于<strong>路径字符串的长度</strong></td>
+</tr>
+<tr>
+<td><strong>示例命令</strong></td>
+<td><code>ls -i</code> 查看inode号</td>
+<td><code>ln file1 file2</code></td>
+<td><code>ln -s file1 symlink</code></td>
+</tr>
+</tbody></table>
+<hr>
+<p>注意软链接（符号链接）的 inode 与被链接文件的 inode 不是同一个，这是软链接与硬链接的核心区别之一</p>
+<hr>
+<h4 id="三、工作原理解析"><a href="#三、工作原理解析" class="headerlink" title="三、工作原理解析"></a><strong>三、工作原理解析</strong></h4><h5 id="1-inode-的角色"><a href="#1-inode-的角色" class="headerlink" title="1. inode 的角色"></a><strong>1. inode 的角色</strong></h5><ul>
+<li>每个文件对应<strong>唯一inode</strong>，存储：<ul>
+<li>文件类型（普通文件、目录、符号链接等）</li>
+<li>权限（rwx）</li>
+<li>所有者和所属组</li>
+<li>大小、时间戳（atime&#x2F;ctime&#x2F;mtime）</li>
+<li><strong>数据块指针</strong>（指向文件内容在磁盘的位置）</li>
+</ul>
+</li>
+<li>通过 <code>stat filename</code> 可查看inode详情。</li>
+</ul>
+<h5 id="2-硬链接的共享机制"><a href="#2-硬链接的共享机制" class="headerlink" title="2. 硬链接的共享机制"></a><strong>2. 硬链接的共享机制</strong></h5><ul>
+<li>创建硬链接：<code>ln source_file hardlink</code><ul>
+<li><strong>新文件名</strong>与<strong>原文件名</strong>指向<strong>同一个inode</strong>。</li>
+<li>inode的<strong>链接计数（link count）</strong> 增加（通过 <code>ls -l</code> 第二列查看）。</li>
+</ul>
+</li>
+<li><strong>删除文件</strong>：仅减少inode的链接计数，当计数为0时，inode和数据块才被释放。</li>
+</ul>
+<h5 id="3-软链接的路径指向"><a href="#3-软链接的路径指向" class="headerlink" title="3. 软链接的路径指向"></a><strong>3. 软链接的路径指向</strong></h5><ul>
+<li>创建软链接：<code>ln -s target_path symlink_name</code><ul>
+<li>新建一个<strong>独立文件</strong>（含独立inode），文件内容存储<strong>目标路径字符串</strong>。</li>
+<li>类似Windows快捷方式，路径解析依赖目标文件的存在。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="四、实际场景示例"><a href="#四、实际场景示例" class="headerlink" title="四、实际场景示例"></a><strong>四、实际场景示例</strong></h4><h5 id="场景1：硬链接的共享性"><a href="#场景1：硬链接的共享性" class="headerlink" title="场景1：硬链接的共享性"></a><strong>场景1：硬链接的共享性</strong></h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建文件</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Hello&quot;</span> &gt; file1</span><br><span class="line"><span class="comment"># 创建硬链接</span></span><br><span class="line"><span class="built_in">ln</span> file1 file2</span><br><span class="line"><span class="comment"># 查看inode（相同）</span></span><br><span class="line"><span class="built_in">ls</span> -i file1 file2    <span class="comment"># 输出：12345 file1  12345 file2</span></span><br><span class="line"><span class="comment"># 删除原文件</span></span><br><span class="line"><span class="built_in">rm</span> file1 </span><br><span class="line"><span class="comment"># 仍可通过硬链接访问</span></span><br><span class="line"><span class="built_in">cat</span> file2            <span class="comment"># 输出：Hello</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="场景2：软链接的依赖性"><a href="#场景2：软链接的依赖性" class="headerlink" title="场景2：软链接的依赖性"></a><strong>场景2：软链接的依赖性</strong></h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建软链接</span></span><br><span class="line"><span class="built_in">ln</span> -s file1 softlink</span><br><span class="line"><span class="comment"># 查看软链接（指向路径）</span></span><br><span class="line"><span class="built_in">ls</span> -l softlink       <span class="comment"># 输出：softlink -&gt; file1</span></span><br><span class="line"><span class="comment"># 删除原文件</span></span><br><span class="line"><span class="built_in">rm</span> file1</span><br><span class="line"><span class="comment"># 软链接失效</span></span><br><span class="line"><span class="built_in">cat</span> softlink         <span class="comment"># 报错：No such file or directory</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="五、三者联系总结"><a href="#五、三者联系总结" class="headerlink" title="五、三者联系总结"></a><strong>五、三者联系总结</strong></h4><ol>
+<li><strong>inode是基石</strong>：<br>文件的所有元信息由inode管理，硬链接和软链接均依赖inode机制。</li>
+<li><strong>硬链接与inode直接绑定</strong>：<br>多个文件名共享同一inode，通过链接计数管理文件生命周期。</li>
+<li><strong>软链接独立于目标inode</strong>：<br>自身是独立文件，仅存储路径字符串，解耦目标文件的inode。</li>
+</ol>
+<hr>
+<h4 id="六、关键命令速查"><a href="#六、关键命令速查" class="headerlink" title="六、关键命令速查"></a><strong>六、关键命令速查</strong></h4><table>
+<thead>
+<tr>
+<th><strong>命令</strong></th>
+<th><strong>作用</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>ls -i</code></td>
+<td>查看文件inode号</td>
+</tr>
+<tr>
+<td><code>stat filename</code></td>
+<td>显示文件inode详情</td>
+</tr>
+<tr>
+<td><code>ln source hardlink</code></td>
+<td>创建硬链接</td>
+</tr>
+<tr>
+<td><code>ln -s target symlink</code></td>
+<td>创建软链接</td>
+</tr>
+<tr>
+<td><code>find / -inum 12345</code></td>
+<td>根据inode号查找文件</td>
+</tr>
+</tbody></table>
+<hr>
+<h4 id="七、总结"><a href="#七、总结" class="headerlink" title="七、总结"></a><strong>七、总结</strong></h4><ul>
+<li><strong>inode</strong>：文件的元数据容器（不含文件名）。  </li>
+<li><strong>硬链接</strong>：多个文件名指向同一inode（<strong>共享数据、不可跨分区、删除不影响数据</strong>）。  </li>
+<li><strong>软链接</strong>：独立文件存储目标路径（<strong>可跨分区、指向目录、依赖原文件</strong>）。<br><strong>本质区别</strong>：硬链接是文件实体的别名，软链接是路径的引用。</li>
+</ul>
 <h3 id="关于LILO"><a href="#关于LILO" class="headerlink" title="关于LILO"></a>关于LILO</h3><p>LILO是Linux的引导加载程序。它主要用于将Linux操作系统加载到主内存中，以便它可以开始运行</p>
 <h3 id="关于Linux内核"><a href="#关于Linux内核" class="headerlink" title="关于Linux内核"></a>关于Linux内核</h3><p>也叫Linux kernel，是操作系统的核心组件之一，其功能众多包括进程管理，文件系统等，其中文件系统采用的是overlayFS（UnionFS(联合文件系统）的一种实现）方法，其他组件包括shell和GUI，系统实用程序和应用程序</p>
 <h3 id="关于Linux系统安全操作"><a href="#关于Linux系统安全操作" class="headerlink" title="关于Linux系统安全操作"></a>关于Linux系统安全操作</h3><p>Root账户改密、禁用多余服务、更新系统软件、配置防火墙、设置SSH安全策略、管理用户权限</p>
-<h3 id="关于Linux文件系统"><a href="#关于Linux文件系统" class="headerlink" title="关于Linux文件系统"></a>关于Linux文件系统</h3><p>Linux文件系统是一种组织和管理磁盘上文件和目录的层次结构。它采用树形结构，以根目录（&#x2F;）为起点，包含各种子目录和文件。文件系统不仅负责数据存储，还支持文件访问控制、磁盘空间分配等功能，采用的是overlayFS（UnionFS(联合文件系统）的一种实现方法）系统</p>
+<h3 id="关于Linux文件系统"><a href="#关于Linux文件系统" class="headerlink" title="关于Linux文件系统"></a>关于Linux文件系统</h3><p>Linux文件系统是一种组织和管理磁盘上文件和目录的层次结构。它**采用树形结构，以根目录（&#x2F;）为起点，包含各种子目录和文件。**文件系统不仅负责数据存储，还支持文件访问控制、磁盘空间分配等功能，采用的是overlayFS（UnionFS(联合文件系统）的一种实现方法）系统</p>
 <h3 id="关于Linux系统运行级别："><a href="#关于Linux系统运行级别：" class="headerlink" title="关于Linux系统运行级别："></a>关于Linux系统运行级别：</h3><p>常用的运行级别为3和5。</p>
 <p>切换默认运行级别: </p>
 <p>systemctl set-default multi-user.target</p>
@@ -189,7 +337,7 @@ setTimeout(function(){preloader.endLoading();}, 3000);</script><div id="web_bg" 
 <p>Linux与用户、组有关的命令：useradd、groupadd、getent(与cat、grep相似)、passwd等等</p>
 <p>拓展：关于Sticky Bit，Linux的文件具有读写执行权限，为了防止文件被意外删除，额外添加了一种权限——t，即Sticky Bit</p>
 <h3 id="Linux的定时服务"><a href="#Linux的定时服务" class="headerlink" title="Linux的定时服务"></a>Linux的定时服务</h3><p>cron命令、《&#x2F;etc&#x2F;crontab文件》《crontab -e》、《anacron》.《at命令》等也可以借用第三方工具如：fcron、dcron等</p>
-<h2 id="关于命令"><a href="#关于命令" class="headerlink" title="关于命令"></a>关于命令</h2><h3 id="一、基础操作与文件管理"><a href="#一、基础操作与文件管理" class="headerlink" title="一、基础操作与文件管理"></a><strong>一、基础操作与文件管理</strong></h3><ul>
+<h2 id="关于实操"><a href="#关于实操" class="headerlink" title="关于实操"></a>关于实操</h2><h3 id="基础命令相关"><a href="#基础命令相关" class="headerlink" title="基础命令相关"></a>基础命令相关</h3><h4 id="一、基础操作与文件管理"><a href="#一、基础操作与文件管理" class="headerlink" title="一、基础操作与文件管理"></a><strong>一、基础操作与文件管理</strong></h4><ul>
 <li><strong>用途</strong>：系统导航、文件&#x2F;目录操作及信息查看</li>
 <li><strong>常用命令</strong>：<ul>
 <li><code>cd</code>：切换目录  </li>
@@ -197,7 +345,10 @@ setTimeout(function(){preloader.endLoading();}, 3000);</script><div id="web_bg" 
 <li><code>pwd</code>：显示当前路径  </li>
 <li><code>cp</code>：复制文件&#x2F;目录  </li>
 <li><code>mv</code>：移动或重命名文件  </li>
-<li><code>rm</code>：删除文件&#x2F;目录（<code>-r</code> 递归删除，<code>-f</code> 强制删除）  </li>
+<li><code>rm</code>：删除文件&#x2F;目录（<code>-r</code>代表递归删除recursive <code>-f</code>代表强制删除force）<ul>
+<li><code>-rf *</code> 删除当前目录下的所有文件</li>
+</ul>
+</li>
 <li><code>touch</code>：创建空文件或更新文件时间戳  </li>
 <li><code>cat</code>&#x2F;<code>less</code>&#x2F;<code>more</code>：查看文件内容  </li>
 <li><code>find</code>：搜索文件（如 <code>find /home -name &quot;*.txt&quot;</code>）  </li>
@@ -206,7 +357,7 @@ setTimeout(function(){preloader.endLoading();}, 3000);</script><div id="web_bg" 
 </li>
 </ul>
 <hr>
-<h3 id="二、系统管理与权限控制"><a href="#二、系统管理与权限控制" class="headerlink" title="二、系统管理与权限控制"></a><strong>二、系统管理与权限控制</strong></h3><ul>
+<h4 id="二、系统管理与权限控制"><a href="#二、系统管理与权限控制" class="headerlink" title="二、系统管理与权限控制"></a><strong>二、系统管理与权限控制</strong></h4><ul>
 <li><strong>用途</strong>：用户&#x2F;权限管理、进程监控及系统状态</li>
 <li><strong>常用命令</strong>：<ul>
 <li><code>sudo</code>：以管理员权限执行命令  </li>
@@ -222,7 +373,7 @@ setTimeout(function(){preloader.endLoading();}, 3000);</script><div id="web_bg" 
 </li>
 </ul>
 <hr>
-<h3 id="三、网络与通信"><a href="#三、网络与通信" class="headerlink" title="三、网络与通信"></a><strong>三、网络与通信</strong></h3><ul>
+<h4 id="三、网络与通信"><a href="#三、网络与通信" class="headerlink" title="三、网络与通信"></a><strong>三、网络与通信</strong></h4><ul>
 <li><strong>用途</strong>：网络配置、连接测试及数据传输</li>
 <li><strong>常用命令</strong>：<ul>
 <li><code>ping</code>：测试网络连通性  </li>
@@ -238,7 +389,7 @@ setTimeout(function(){preloader.endLoading();}, 3000);</script><div id="web_bg" 
 </li>
 </ul>
 <hr>
-<h3 id="四、软件包管理与开发工具"><a href="#四、软件包管理与开发工具" class="headerlink" title="四、软件包管理与开发工具"></a><strong>四、软件包管理与开发工具</strong></h3><ul>
+<h4 id="四、软件包管理与开发工具"><a href="#四、软件包管理与开发工具" class="headerlink" title="四、软件包管理与开发工具"></a><strong>四、软件包管理与开发工具</strong></h4><ul>
 <li><strong>用途</strong>：软件安装、编译及版本控制</li>
 <li><strong>常用命令</strong>：<ul>
 <li><code>apt</code>&#x2F;<code>yum</code>&#x2F;<code>dnf</code>：包管理工具（Debian&#x2F;RedHat系）  </li>
@@ -258,7 +409,16 @@ setTimeout(function(){preloader.endLoading();}, 3000);</script><div id="web_bg" 
 1. df是查看整个文件系统的空闲空间，而du是查看特定文件或目录的磁盘使用情况
 2. kill -9强制杀死，kill -15 允许自行清理后杀死。推荐先15不行再9
 </code></pre>
-<h3 id="Vim命令相关"><a href="#Vim命令相关" class="headerlink" title="Vim命令相关"></a>Vim命令相关</h3><p>Set list、set nu、noh、%d、dd、yy、p、&#x2F;xxx、v&#x2F;a(视图&#x2F;编辑)模式<br>注意event not found——可能是用echo命令时其中有感叹号</p>
-<p><strong>Linux的shell脚本格式注意：“#!&#x2F;bin&#x2F;bash”</strong></p>
 <h3 id="环境变量设置"><a href="#环境变量设置" class="headerlink" title="环境变量设置"></a>环境变量设置</h3><p>文件路径:&#x2F;etc&#x2F;profile。修改后用source重载<br>文本内容添加参考:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export NGINX_HOME=/usr/local/nginx`</span><br><span class="line">export PATH=$PATH:$PROMETHEUS_HOME:$NGINX_HOME/sbin</span><br></pre></td></tr></table></figure></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://Swingautumn.github.io">王耀福</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://swingautumn.github.io/LinuxNote/">https://swingautumn.github.io/LinuxNote/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://Swingautumn.github.io" target="_blank">王耀福的个人博客</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/logo.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/DockerNote/" title="DockerNote"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">DockerNote</div></div><div class="info-2"><div class="info-item-1">Dockerdocker安装使用yum需要注意，是docker-ce，相关教程1相关教程2——————用老版本docker镜像换源怎么换都访问不了，最后发现是版本问题，真的是干裂开了 理论相关是一个开源的应用容器引擎，采用的是cs架构 优势体现在存储应用程序上，在日志以及数据方面并不擅长 它启动快的一个重要原因是没有抽象层(跟虚拟机比)同时不需要内核直接依赖宿主机  平时我们安装进虚拟机的CentOS都是好几个G，为什么Docker这里才200M ? 对于一个精简的OS , rootfs可以很小，只需要包含最基本的命令工具和程序库就可以了，因为底层直接用Host的kernel，自己只需要提供rootfs就可以了。由此可见对于不同的linux发行版, bootfs基本是一致的, rootfs会有差别,因此不同的发行版可以公用bootfs。 Docker的内核主要部分是rootfs并且其内核并不完整，还经过优化和压缩处理 Bootfs与rootfs都属于联合文件系统(UnionFS)，有UnionFS实现的overlayFS属于Linux内核(Linux...</div></div></div></a><a class="pagination-related" href="/RedisNote/" title="Redis笔记"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Redis笔记</div></div><div class="info-2"><div class="info-item-1">Redis笔记理论相关Redis基础概念 Redis是一种键值（key-value）类型的非关系型数据库，具有强大的读写能力，适用于高并发场景，可扩展性强。 支持的数据类型：字符串（string）、列表（list）、散列（hash）、集合（set）、有序集合（zset）。 单线程模型：采用单线程处理请求，性能瓶颈主要受限于内存和网络带宽，类似单线程设计的软件包括Node.js和Nginx。  Redis事务与功能 事务支持：Redis支持事务操作，但无隔离级别概念，幻读、脏读等问题仍需注意。 订阅功能： 订阅端使用 SUBSCRIBE 命令创建订阅频道。 发送端使用 PUBLISH...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">王耀福</div><div class="author-info-description">迷茫前进着的打工人</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">8</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Swingautumn"><i class="fab fa-github"></i><span>Github主页</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎查看,个人博客不定时完善中~~~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9B%B6%E6%95%A3%E7%90%86%E8%AE%BA"><span class="toc-number">1.</span> <span class="toc-text">零散理论</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8ERAID"><span class="toc-number">1.1.</span> <span class="toc-text">关于RAID</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8Einode%E3%80%81%E7%A1%AC%E9%93%BE%E6%8E%A5%E3%80%81%E8%BD%AF%E9%93%BE%E6%8E%A5"><span class="toc-number">1.2.</span> <span class="toc-text">关于inode、硬链接、软链接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8ELILO"><span class="toc-number">1.3.</span> <span class="toc-text">关于LILO</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8ELinux%E5%86%85%E6%A0%B8"><span class="toc-number">1.4.</span> <span class="toc-text">关于Linux内核</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8ELinux%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E6%93%8D%E4%BD%9C"><span class="toc-number">1.5.</span> <span class="toc-text">关于Linux系统安全操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8ELinux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.6.</span> <span class="toc-text">关于Linux文件系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8ELinux%E7%B3%BB%E7%BB%9F%E8%BF%90%E8%A1%8C%E7%BA%A7%E5%88%AB%EF%BC%9A"><span class="toc-number">1.7.</span> <span class="toc-text">关于Linux系统运行级别：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux%E9%BB%98%E8%AE%A4%E5%88%86%E5%8C%BA%E5%8C%85%E6%8B%AC%E6%A0%B9%E5%88%86%E5%8C%BA%E3%80%81%E5%90%AF%E5%8A%A8%E5%88%86%E5%8C%BA%E3%80%81%E4%BA%A4%E6%8D%A2%E5%88%86%E5%8C%BA%E3%80%81%E7%94%A8%E6%88%B7%E5%88%86%E5%8C%BA%E8%BF%98%E6%9C%89%E3%80%81var%E5%88%86%E5%8C%BA%E7%AD%89%E7%AD%89"><span class="toc-number">1.8.</span> <span class="toc-text">Linux默认分区包括根分区、启动分区、交换分区、用户分区还有、var分区等等</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux%E5%85%B3%E4%BA%8E%E5%8E%8B%E7%BC%A9"><span class="toc-number">1.9.</span> <span class="toc-text">Linux关于压缩</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux%E5%85%B3%E4%BA%8E%E6%9D%83%E9%99%90"><span class="toc-number">1.10.</span> <span class="toc-text">Linux关于权限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux%E7%9A%84%E5%AE%9A%E6%97%B6%E6%9C%8D%E5%8A%A1"><span class="toc-number">1.11.</span> <span class="toc-text">Linux的定时服务</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E5%91%BD%E4%BB%A4"><span class="toc-number">2.</span> <span class="toc-text">关于命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C%E4%B8%8E%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86"><span class="toc-number">2.1.</span> <span class="toc-text">一、基础操作与文件管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E4%B8%8E%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6"><span class="toc-number">2.2.</span> <span class="toc-text">二、系统管理与权限控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E7%BD%91%E7%BB%9C%E4%B8%8E%E9%80%9A%E4%BF%A1"><span class="toc-number">2.3.</span> <span class="toc-text">三、网络与通信</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E8%BD%AF%E4%BB%B6%E5%8C%85%E7%AE%A1%E7%90%86%E4%B8%8E%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7"><span class="toc-number">2.4.</span> <span class="toc-text">四、软件包管理与开发工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vim%E5%91%BD%E4%BB%A4%E7%9B%B8%E5%85%B3"><span class="toc-number">2.5.</span> <span class="toc-text">Vim命令相关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E8%AE%BE%E7%BD%AE"><span class="toc-number">2.6.</span> <span class="toc-text">环境变量设置</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By 王耀福</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script src="/js/fixed-pagination.js" async></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.6" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export NGINX_HOME=/usr/local/nginx`</span><br><span class="line">export PATH=$PATH:$PROMETHEUS_HOME:$NGINX_HOME/sbin</span><br></pre></td></tr></table></figure>
+<h4 id="好用的环境变量1"><a href="#好用的环境变量1" class="headerlink" title="好用的环境变量1"></a>好用的环境变量1</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># 创建脚本并自动赋权</span><br><span class="line">mksh() &#123;</span><br><span class="line">    touch &quot;$1&quot; &amp;&amp; chmod +x &quot;$1&quot;</span><br><span class="line">    echo &quot;创建可执行脚本: $1&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># 创建带 shebang 的脚本</span><br><span class="line">mkshb() &#123;</span><br><span class="line">    echo &#x27;#!/bin/bash&#x27; &gt; &quot;$1&quot; &amp;&amp; chmod +x &quot;$1&quot;</span><br><span class="line">    echo &quot;创建带 shebang 的脚本: $1&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="shell编程相关"><a href="#shell编程相关" class="headerlink" title="shell编程相关"></a>shell编程相关</h3><h4 id="Vim命令相关"><a href="#Vim命令相关" class="headerlink" title="Vim命令相关"></a>Vim命令相关</h4><ul>
+<li><strong>显示设置</strong>：<code>set list</code>（显示不可见字符）、<code>set nu</code>（显示行号）  </li>
+<li><strong>搜索操作</strong>：<code>/xxx</code>（搜索xxx并高亮）、<code>:noh</code>（取消高亮）  </li>
+<li><strong>编辑命令</strong>：<code>dd</code>（删除行）、<code>yy</code>（复制行）、<code>p</code>（粘贴到光标后）、<code>%d</code>（清空文件全部内容）  </li>
+<li><strong>模式切换</strong>：<code>v</code>（视图模式）、<code>a</code>（编辑模式）<br>⚠️ <code>echo</code>命令含<code>!</code>可能报<code>event not found</code><br>echo文本输出打印、！判断反逻辑、-ge判断是否大于、-gt判断是否小于、-eq判断相等、-f判断文件存在、-d判断目录存在、-e判断文件或目录存在、<br>删除20到31行命令 :20,31d</li>
+</ul>
+<p><strong>Linux的shell脚本格式注意：“#! &#x2F;bin&#x2F;bash”</strong></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://Swingautumn.github.io">王耀福</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://swingautumn.github.io/LinuxNote/">https://swingautumn.github.io/LinuxNote/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://Swingautumn.github.io" target="_blank">王耀福的个人博客</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/logo.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/DockerNote/" title="DockerNote"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">DockerNote</div></div><div class="info-2"><div class="info-item-1">Dockerdocker安装使用yum需要注意，是docker-ce，相关教程1相关教程2——————用老版本docker镜像换源怎么换都访问不了，最后发现是版本问题，真的是干裂开了 步骤1安装依赖utils、device-mapper、lvm2 ；步骤2：切换国内镜像的docker源 ；步骤3：安装docker 是一个开源的应用容器引擎，采用的是cs架构 优势体现在存储应用程序上，在日志以及数据方面并不擅长 它启动快的一个重要原因是没有抽象层(跟虚拟机比)同时不需要内核直接依赖宿主机  平时我们安装进虚拟机的CentOS都是好几个G，为什么Docker这里才200M ? 对于一个精简的OS , rootfs可以很小，只需要包含最基本的命令工具和程序库就可以了，因为底层直接用Host的kernel，自己只需要提供rootfs就可以了。由此可见对于不同的linux发行版, bootfs基本是一致的,...</div></div></div></a><a class="pagination-related" href="/RedisNote/" title="Redis笔记"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Redis笔记</div></div><div class="info-2"><div class="info-item-1">Redis笔记理论相关Redis基础概念 Redis是一种键值（key-value）类型的非关系型数据库，具有强大的读写能力，适用于高并发场景，可扩展性强。 支持的数据类型：字符串（string）、列表（list）、散列（hash）、集合（set）、有序集合（zset）。 单线程模型：采用单线程处理请求，性能瓶颈主要受限于内存和网络带宽，类似单线程设计的软件包括Node.js和Nginx。  Redis事务与功能 事务支持：Redis支持事务操作，但无隔离级别概念，幻读、脏读等问题仍需注意。 订阅功能： 订阅端使用 SUBSCRIBE 命令创建订阅频道。 发送端使用 PUBLISH...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">王耀福</div><div class="author-info-description">迷茫前进着的打工人</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">9</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Swingautumn"><i class="fab fa-github"></i><span>Github主页</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎查看,个人博客不定时完善中~~~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%84%E7%A7%8D%E7%90%86%E8%AE%BA"><span class="toc-number">1.</span> <span class="toc-text">各种理论</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8ERAID"><span class="toc-number">1.1.</span> <span class="toc-text">关于RAID</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8Einode%E3%80%81%E7%A1%AC%E9%93%BE%E6%8E%A5%E3%80%81%E8%BD%AF%E9%93%BE%E6%8E%A5"><span class="toc-number">1.2.</span> <span class="toc-text">关于inode、硬链接、软链接</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E4%B8%8E%E4%BD%9C%E7%94%A8"><span class="toc-number">1.2.1.</span> <span class="toc-text">一、核心概念与作用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%85%B3%E9%94%AE%E5%8C%BA%E5%88%AB%E5%AF%B9%E6%AF%94"><span class="toc-number">1.2.2.</span> <span class="toc-text">二、关键区别对比</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90"><span class="toc-number">1.2.3.</span> <span class="toc-text">三、工作原理解析</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-inode-%E7%9A%84%E8%A7%92%E8%89%B2"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">1. inode 的角色</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E7%A1%AC%E9%93%BE%E6%8E%A5%E7%9A%84%E5%85%B1%E4%BA%AB%E6%9C%BA%E5%88%B6"><span class="toc-number">1.2.3.2.</span> <span class="toc-text">2. 硬链接的共享机制</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E8%BD%AF%E9%93%BE%E6%8E%A5%E7%9A%84%E8%B7%AF%E5%BE%84%E6%8C%87%E5%90%91"><span class="toc-number">1.2.3.3.</span> <span class="toc-text">3. 软链接的路径指向</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%AE%9E%E9%99%85%E5%9C%BA%E6%99%AF%E7%A4%BA%E4%BE%8B"><span class="toc-number">1.2.4.</span> <span class="toc-text">四、实际场景示例</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9C%BA%E6%99%AF1%EF%BC%9A%E7%A1%AC%E9%93%BE%E6%8E%A5%E7%9A%84%E5%85%B1%E4%BA%AB%E6%80%A7"><span class="toc-number">1.2.4.1.</span> <span class="toc-text">场景1：硬链接的共享性</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9C%BA%E6%99%AF2%EF%BC%9A%E8%BD%AF%E9%93%BE%E6%8E%A5%E7%9A%84%E4%BE%9D%E8%B5%96%E6%80%A7"><span class="toc-number">1.2.4.2.</span> <span class="toc-text">场景2：软链接的依赖性</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E4%B8%89%E8%80%85%E8%81%94%E7%B3%BB%E6%80%BB%E7%BB%93"><span class="toc-number">1.2.5.</span> <span class="toc-text">五、三者联系总结</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E5%85%B3%E9%94%AE%E5%91%BD%E4%BB%A4%E9%80%9F%E6%9F%A5"><span class="toc-number">1.2.6.</span> <span class="toc-text">六、关键命令速查</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E6%80%BB%E7%BB%93"><span class="toc-number">1.2.7.</span> <span class="toc-text">七、总结</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8ELILO"><span class="toc-number">1.3.</span> <span class="toc-text">关于LILO</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8ELinux%E5%86%85%E6%A0%B8"><span class="toc-number">1.4.</span> <span class="toc-text">关于Linux内核</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8ELinux%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E6%93%8D%E4%BD%9C"><span class="toc-number">1.5.</span> <span class="toc-text">关于Linux系统安全操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8ELinux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.6.</span> <span class="toc-text">关于Linux文件系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8ELinux%E7%B3%BB%E7%BB%9F%E8%BF%90%E8%A1%8C%E7%BA%A7%E5%88%AB%EF%BC%9A"><span class="toc-number">1.7.</span> <span class="toc-text">关于Linux系统运行级别：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux%E9%BB%98%E8%AE%A4%E5%88%86%E5%8C%BA%E5%8C%85%E6%8B%AC%E6%A0%B9%E5%88%86%E5%8C%BA%E3%80%81%E5%90%AF%E5%8A%A8%E5%88%86%E5%8C%BA%E3%80%81%E4%BA%A4%E6%8D%A2%E5%88%86%E5%8C%BA%E3%80%81%E7%94%A8%E6%88%B7%E5%88%86%E5%8C%BA%E8%BF%98%E6%9C%89%E3%80%81var%E5%88%86%E5%8C%BA%E7%AD%89%E7%AD%89"><span class="toc-number">1.8.</span> <span class="toc-text">Linux默认分区包括根分区、启动分区、交换分区、用户分区还有、var分区等等</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux%E5%85%B3%E4%BA%8E%E5%8E%8B%E7%BC%A9"><span class="toc-number">1.9.</span> <span class="toc-text">Linux关于压缩</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux%E5%85%B3%E4%BA%8E%E6%9D%83%E9%99%90"><span class="toc-number">1.10.</span> <span class="toc-text">Linux关于权限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux%E7%9A%84%E5%AE%9A%E6%97%B6%E6%9C%8D%E5%8A%A1"><span class="toc-number">1.11.</span> <span class="toc-text">Linux的定时服务</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E5%AE%9E%E6%93%8D"><span class="toc-number">2.</span> <span class="toc-text">关于实操</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4%E7%9B%B8%E5%85%B3"><span class="toc-number">2.1.</span> <span class="toc-text">基础命令相关</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C%E4%B8%8E%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86"><span class="toc-number">2.1.1.</span> <span class="toc-text">一、基础操作与文件管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E4%B8%8E%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6"><span class="toc-number">2.1.2.</span> <span class="toc-text">二、系统管理与权限控制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E7%BD%91%E7%BB%9C%E4%B8%8E%E9%80%9A%E4%BF%A1"><span class="toc-number">2.1.3.</span> <span class="toc-text">三、网络与通信</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E8%BD%AF%E4%BB%B6%E5%8C%85%E7%AE%A1%E7%90%86%E4%B8%8E%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7"><span class="toc-number">2.1.4.</span> <span class="toc-text">四、软件包管理与开发工具</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E8%AE%BE%E7%BD%AE"><span class="toc-number">2.2.</span> <span class="toc-text">环境变量设置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A5%BD%E7%94%A8%E7%9A%84%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F1"><span class="toc-number">2.2.1.</span> <span class="toc-text">好用的环境变量1</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#shell%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3"><span class="toc-number">2.3.</span> <span class="toc-text">shell编程相关</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Vim%E5%91%BD%E4%BB%A4%E7%9B%B8%E5%85%B3"><span class="toc-number">2.3.1.</span> <span class="toc-text">Vim命令相关</span></a></li></ol></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By 王耀福</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script src="/js/fixed-pagination.js" async></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.6" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
